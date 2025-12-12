@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Quarantine & Treatment Facility — Prototype</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>Quarantine & Treatment Facility — Prototype</h1>
+  <nav>
+    <button id="nav-dashboard">Dashboard</button>
+    <button id="nav-nurse">Nurse</button>
+    <button id="nav-doctor">Doctor</button>
+    <button id="nav-admin">Admin</button>
+    <select id="roleSwitch" title="Quick role switch">
+      <option value="nurse">Nurse</option>
+      <option value="doctor">Doctor</option>
+      <option value="admin">Admin</option>
+    </select>
+  </nav>
+</header>
+
+<main id="app">
+  <section id="dashboard" class="view">
+    <h2>Patient List</h2>
+    <div class="controls">
+      <button id="resetAll">Reset Storage</button>
+      <button id="addPatientBtn">Add Patient</button>
+      <div class="search">
+        <input id="searchInput" placeholder="Search patient name or bed..." />
+      </div>
+    </div>
+
+    <div id="stats" class="cards"></div>
+
+    <table id="patientTable" class="patients">
+      <thead><tr><th>Bed</th><th>Name</th><th>Age</th><th>Status</th><th>Fever-free days</th><th>Actions</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section id="nurse" class="view hidden">
+    <h2>Nurse — Record Temperature</h2>
+    <div id="nurseTodo" class="muted"></div>
+    <div class="panel">
+      <label>Pick Patient: <select id="nursePatient"></select></label>
+      <label>Temperature °C: <input id="tempInput" type="number" step="0.1" min="30" max="45"></label>
+      <button id="recordTemp">Record Temperature</button>
+      <div id="nurseMsg" class="msg"></div>
+    </div>
+  </section>
+
+  <section id="doctor" class="view hidden">
+    <h2>Doctor — Mark Visit</h2>
+    <div id="doctorTodo" class="muted"></div>
+    <div class="panel">
+      <label>Pick Patient: <select id="doctorPatient"></select></label>
+      <label>Notes: <input id="docNotes" placeholder="short notes"></label>
+      <button id="markVisit">Mark Visit</button>
+      <div id="doctorMsg" class="msg"></div>
+    </div>
+  </section>
+
+  <section id="admin" class="view hidden">
+    <h2>Admin Dashboard</h2>
+    <div id="adminKPIs" class="cards"></div>
+
+    <h3>Discharge / Outcome Controls</h3>
+    <div class="panel">
+      <label>Pick Patient: <select id="adminPatient"></select></label>
+      <button id="markDischarge">Discharge (if eligible)</button>
+      <button id="markDeath">Mark Deceased</button>
+      <div id="adminMsg" class="msg"></div>
+    </div>
+
+    <h3>Patient Detail</h3>
+    <div id="patientDetail"></div>
+  </section>
+</main>
+
+<!-- Add Patient Panel (hidden by default) -->
+<div id="addPatientPanel" class="panel floating hidden">
+  <h3>Add New Patient</h3>
+  <label>Name: <input id="newPatientName" placeholder="Full name"></label>
+  <label>Age: <input id="newPatientAge" type="number" min="0" placeholder="Age"></label>
+  <label>Bed No: <input id="newPatientBed" type="number" min="1" placeholder="Bed number"></label>
+  <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+    <button id="saveNewPatient">Save Patient</button>
+    <button id="closeAddPanel">Close</button>
+  </div>
+  <div id="addPatientMsg" class="msg"></div>
+</div>
+
+<footer>
+  <div style="margin-top:8px">
+    <button id="exportBtn">Download Data JSON</button>
+    <input id="importFile" type="file" accept=".json" />
+    <button id="importBtn">Import JSON</button>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

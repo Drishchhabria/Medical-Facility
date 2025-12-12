@@ -1,0 +1,35 @@
+:root{
+  --bg:#0f1724;
+  --card:#0b1220;
+  --accent:#631a86;
+  --accent2:#ff6933;
+  --muted:#9aa4b2;
+  color-scheme: dark;
+}
+*{box-sizing:border-box;font-family:Inter,Segoe UI,system-ui,Arial;}
+body{margin:0;background:linear-gradient(180deg,#071022,#081229);color:#e6eef6;}
+header{padding:12px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.03)}
+header h1{font-size:18px;margin:0}
+nav{display:flex;gap:8px;align-items:center}
+button,select,input{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px;border-radius:8px;color:inherit}
+main{padding:18px}
+.view{max-width:1100px;margin:0 auto}
+.hidden{display:none}
+.cards{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0 18px}
+.cards .card{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;min-width:160px}
+.patients{width:100%;border-collapse:collapse;margin-top:12px}
+.patients th, .patients td{padding:10px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:left;font-size:14px}
+.status{padding:6px 8px;border-radius:8px;font-weight:600}
+.status.red{background:#4b0a0a;color:#ffd6d6}
+.status.yellow{background:#4a3b0a;color:#fff2c6}
+.status.green{background:#06341a;color:#bff3c8}
+.status.blue{background:#0a234a;color:#cfe6ff}
+.panel{background:rgba(255,255,255,0.01);padding:12px;border-radius:10px;margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.msg{margin-top:8px;color:var(--accent2)}
+footer{padding:12px;text-align:center;border-top:1px solid rgba(255,255,255,0.02);margin-top:18px}
+.search input{width:220px;padding:8px}
+small{color:var(--muted)}
+
+/* Floating Add panel */
+.floating{position:fixed;right:18px;bottom:18px;z-index:999;width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.6)}
+.muted{color:var(--muted);font-size:13px}
