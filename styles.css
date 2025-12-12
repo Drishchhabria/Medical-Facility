@@ -1,35 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
 :root{
-  --bg:#0f1724;
-  --card:#0b1220;
-  --accent:#631a86;
-  --accent2:#ff6933;
-  --muted:#9aa4b2;
-  color-scheme: dark;
+  --bg-dark:#061226;
+  --bg:#071426;
+  --panel:#071627;
+  --card:#0e1a2a;
+  --muted:#9fb0c8;
+  --text:#e6eef6;
+  --accent:#6e3aa8; /* purple */
+  --accent-2:#ff7a3c; /* orange */
+  --success:#1fb07a;
+  --danger:#e14b4b;
+  --glass: rgba(255,255,255,0.03);
+  --glass-2: rgba(255,255,255,0.02);
+  --radius:12px;
 }
-*{box-sizing:border-box;font-family:Inter,Segoe UI,system-ui,Arial;}
-body{margin:0;background:linear-gradient(180deg,#071022,#081229);color:#e6eef6;}
-header{padding:12px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.03)}
-header h1{font-size:18px;margin:0}
-nav{display:flex;gap:8px;align-items:center}
-button,select,input{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px;border-radius:8px;color:inherit}
-main{padding:18px}
-.view{max-width:1100px;margin:0 auto}
+
+*{box-sizing:border-box;font-family:Inter,Segoe UI,system-ui,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+html,body{height:100%;}
+body{margin:0;background:linear-gradient(180deg,var(--bg-dark),#041022 70%);color:var(--text);}
+
+/* Header */
+header{position:sticky;top:0;z-index:40;background:linear-gradient(180deg,rgba(6,18,38,0.6),rgba(4,10,20,0.6));backdrop-filter: blur(6px);border-bottom:1px solid rgba(255,255,255,0.03);padding:14px 22px;display:flex;align-items:center;gap:16px;justify-content:space-between}
+header h1{font-size:18px;margin:0;font-weight:700;letter-spacing:0.2px}
+nav{display:flex;align-items:center;gap:10px}
+
+/* Nav buttons as segmented control */
+nav button{appearance:none;cursor:pointer;padding:8px 12px;border-radius:10px;border:1px solid transparent;background:transparent;color:var(--muted);font-weight:600;transition:all .18s ease}
+nav button:hover{color:var(--text);transform:translateY(-1px)}
+nav button:focus{outline:none}
+
+/* Role switch */
+#roleSwitch{padding:8px;border-radius:9px;border:1px solid rgba(255,255,255,0.04);background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
+
+/* Main layout */
+main{padding:20px 24px;max-width:1200px;margin:0 auto}
+.view{background:transparent;margin:0 auto}
 .hidden{display:none}
-.cards{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0 18px}
-.cards .card{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;min-width:160px}
-.patients{width:100%;border-collapse:collapse;margin-top:12px}
-.patients th, .patients td{padding:10px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:left;font-size:14px}
-.status{padding:6px 8px;border-radius:8px;font-weight:600}
-.status.red{background:#4b0a0a;color:#ffd6d6}
-.status.yellow{background:#4a3b0a;color:#fff2c6}
-.status.green{background:#06341a;color:#bff3c8}
-.status.blue{background:#0a234a;color:#cfe6ff}
-.panel{background:rgba(255,255,255,0.01);padding:12px;border-radius:10px;margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.msg{margin-top:8px;color:var(--accent2)}
-footer{padding:12px;text-align:center;border-top:1px solid rgba(255,255,255,0.02);margin-top:18px}
-.search input{width:220px;padding:8px}
-small{color:var(--muted)}
+
+.cards{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0}
+.cards .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), var(--panel));padding:14px;border-radius:var(--radius);min-width:180px;box-shadow:0 6px 20px rgba(4,8,16,0.6);border:1px solid rgba(255,255,255,0.02)}
+.cards .card strong{display:block;color:var(--muted);font-weight:600;margin-bottom:6px}
+.cards .card div{font-size:20px;font-weight:700}
+
+/* Controls row */
+.controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.controls > *{display:inline-flex;align-items:center;gap:8px}
+button, select, input{font-family:inherit}
+button{cursor:pointer;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);color:var(--text);transition:all .15s ease;}
+button:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(6,14,28,0.6)}
+
+/* Primary action */
+#addPatientBtn, #saveNewPatient, #recordTemp, #markVisit, #markDischarge{background:linear-gradient(90deg,var(--accent), #8f4bd3);border:1px solid rgba(255,255,255,0.04);}
+#exportBtn{background:linear-gradient(90deg,#2b5dff,#1dd3ff);}
+
+.search input{width:260px;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)}
+
+/* Table */
+.patients{width:100%;border-collapse:collapse;margin-top:12px;background:transparent}
+.patients thead th{padding:12px 10px;text-align:left;font-size:13px;color:var(--muted);font-weight:700;border-bottom:1px solid rgba(255,255,255,0.03)}
+.patients tbody td{padding:12px 10px;border-bottom:1px solid rgba(255,255,255,0.02);vertical-align:middle}
+.patients tbody tr{transition:background .12s ease}
+.patients tbody tr:hover{background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.015));}
+.patients td button{padding:6px 8px;border-radius:8px;margin-right:6px;font-weight:600;font-size:13px}
+
+/* Status pills */
+.status{display:inline-block;padding:6px 8px;border-radius:999px;font-weight:700;font-size:13px}
+.status.red{background:linear-gradient(180deg,#4b0a0a,#7a1f1f);color:#ffd6d6}
+.status.yellow{background:linear-gradient(180deg,#64500f,#8d6e1a);color:#fff6d2}
+.status.green{background:linear-gradient(180deg,#0a4b2b,#0f7b4b);color:#d6ffee}
+.status.blue{background:linear-gradient(180deg,#06305a,#0b4d80);color:#d7eeff}
+
+/* Panels */
+.panel{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));padding:14px;border-radius:12px;margin-top:12px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;border:1px solid var(--glass)}
+.panel label{display:flex;flex-direction:column;font-size:13px;color:var(--muted)}
+.panel input[type=number], .panel input[type=text], .panel input[type=file], .panel select{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--text)}
+.msg{margin-top:8px;color:var(--accent-2);font-weight:700}
+.muted{color:var(--muted);font-size:13px}
+.small{font-size:12px;color:var(--muted)}
 
 /* Floating Add panel */
-.floating{position:fixed;right:18px;bottom:18px;z-index:999;width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.6)}
-.muted{color:var(--muted);font-size:13px}
+.floating{position:fixed;right:22px;bottom:22px;z-index:999;width:360px;box-shadow:0 12px 40px rgba(4,10,20,0.7);border-radius:14px;border:1px solid rgba(255,255,255,0.03)}
+.floating h3{margin:0 0 8px 0;font-size:16px}
+.floating label{width:100%}
+
+/* Patient detail */
+#patientDetail h4{margin:0 0 10px 0}
+#patientDetail .panel{flex-direction:column;align-items:flex-start}
+#patientDetail .panel div{max-height:260px;overflow:auto;padding-right:8px}
+
+/* KPIs duplication for admin */
+#adminKPIs{margin-top:6px}
+
+/* Responsive tweaks */
+@media (max-width:900px){
+  .cards{flex-direction:column}
+  .floating{right:12px;left:12px;width:auto}
+  .search input{width:160px}
+  header{padding:12px}
+}
+
+@media (max-width:520px){
+  nav{flex-wrap:wrap}
+  .patients thead{display:none}
+  .patients tbody td{display:block;padding:10px}
+  .patients tbody tr{margin-bottom:10px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));}
+  .controls{flex-direction:column;align-items:stretch}
+}
+
+/* little micro-interactions */
+button, input, select{transition:all .14s ease}
+
+/* subtle scrollbar for panels */
+.panel div::-webkit-scrollbar, #patientDetail .panel::-webkit-scrollbar{width:8px}
+.panel div::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.04);border-radius:6px}
+
+/* helper utility */
+.small-muted{color:var(--muted);font-size:12px}
+
+/* preserve original colour variables for backward compatibility */
+:root{--accent2:var(--accent-2);}

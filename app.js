@@ -1,5 +1,3 @@
-// Quarantine Prototype App (client-side only)
-// Data model: patients in localStorage under key 'q_app_patients'
 const LS_KEY = 'q_app_patients_v1';
 const TEMP_THRESHOLD = 37.5; // below this considered fever-free for discharge logic
 
